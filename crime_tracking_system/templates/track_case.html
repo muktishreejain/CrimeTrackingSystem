@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Complaint Status Tracker</h5>
+            <form method="post" class="row g-2">
+                <div class="col-md-3">
+                    <select name="tracking_type" class="form-select" required>
+                        <option value="crime">CrimeID</option>
+                        <option value="fir">FIRID</option>
+                        <option value="case">CaseID</option>
+                    </select>
+                </div>
+                <div class="col-md-6"><input name="tracking_id" class="form-control" placeholder="Enter tracking ID" required></div>
+                <div class="col-md-3"><button class="btn btn-danger w-100">Track Status</button></div>
+            </form>
+        </div>
+    </div>
+    {% if case_data %}
+    <div class="card mb-3"><div class="card-body">
+        <h6>Case Details</h6>
+        <p class="mb-1"><strong>CaseID:</strong> {{ case_data.CaseID }} | <strong>FIRID:</strong> {{ case_data.FIRID }} | <strong>CrimeID:</strong> {{ case_data.CrimeID }}</p>
+        <p class="mb-1"><strong>Status:</strong> <span class="badge bg-primary">{{ case_data.Status }}</span> | <strong>Priority:</strong> {{ case_data.Priority }}</p>
+        <p class="mb-1"><strong>Station:</strong> {{ case_data.StationName }} ({{ case_data.StationLocation }})</p>
+        <p class="mb-0"><strong>Crime:</strong> {{ case_data.CrimeType }} / {{ case_data.Severity }} | <strong>Evidence Count:</strong> {{ evidence_count }} | <strong>Suspect Count:</strong> {{ suspect_count }}</p>
+    </div></div>
+    <div class="card mb-3"><div class="card-body">
+        <h6>Assigned Officers</h6>
+        {% if officers %}<ul class="mb-0">{% for o in officers %}<li>{{ o.Name }} ({{ o.Rank }}) - {{ o.AssignedDate }}</li>{% endfor %}</ul>{% else %}<p class="text-muted mb-0">No assigned officers.</p>{% endif %}
+    </div></div>
+    <div class="card"><div class="card-body">
+        <h6>Investigation Notes</h6>
+        {% if investigations %}<ul class="mb-0">{% for i in investigations %}<li><strong>{{ i.InvestigationStatus }}</strong>: {{ i.Notes }}</li>{% endfor %}</ul>{% else %}<p class="text-muted mb-0">No logs available.</p>{% endif %}
+    </div></div>
+    {% endif %}
+</div>
+{% endblock %}

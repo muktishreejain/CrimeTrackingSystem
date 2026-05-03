@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h4 class="mb-3">Administrative Dashboard</h4>
+    <div class="row g-3">
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>Total Crimes</h6><h3>{{ metrics.total_crimes }}</h3></div></div></div>
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>Open Cases</h6><h3>{{ metrics.open_cases }}</h3></div></div></div>
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>In Progress</h6><h3>{{ metrics.in_progress_cases }}</h3></div></div></div>
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>Closed Cases</h6><h3>{{ metrics.closed_cases }}</h3></div></div></div>
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>Total Officers</h6><h3>{{ metrics.total_officers }}</h3></div></div></div>
+        <div class="col-md-4"><div class="card card-stat"><div class="card-body"><h6>High Severity</h6><h3>{{ metrics.high_severity_crimes }}</h3></div></div></div>
+    </div>
+    <div class="mt-4 d-flex gap-2 flex-wrap">
+        <a class="btn btn-primary" href="{{ url_for('manage_cases') }}">Case Management</a>
+        <a class="btn btn-outline-primary" href="{{ url_for('database_view') }}">Database Viewer</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+    <div class="hero-card p-4 p-md-5 rounded-4 mb-4">
+        <span class="eyebrow">Civic Safety Platform</span>
+        <h1 class="display-6 fw-bold mt-2">Crime Reporting and Case Tracking Portal</h1>
+        <p class="lead">Report incidents instantly, track complaint progress, and manage investigations through one connected system.</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-danger" href="{{ url_for('report_crime') }}">Report a Crime</a>
+            <a class="btn btn-outline-light" href="{{ url_for('track_case') }}">Track Complaint</a>
+            <a class="btn btn-light" href="{{ url_for('admin_login') }}">Admin Login</a>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-4"><div class="surface-card card-stat"><h6>Total Crimes</h6><h3>{{ stats.total_crimes }}</h3></div></div>
+        <div class="col-md-4"><div class="surface-card card-stat"><h6>Open Cases</h6><h3>{{ stats.open_cases }}</h3></div></div>
+        <div class="col-md-4"><div class="surface-card card-stat"><h6>High Severity Crimes</h6><h3>{{ stats.high_severity }}</h3></div></div>
+    </div>
+
+    <div class="surface-card">
+        <h5>Emergency Contacts</h5>
+        <p class="mb-1">Police Control Room: <strong>100</strong></p>
+        <p class="mb-1">Women Helpline: <strong>1091</strong></p>
+        <p class="mb-0">Cyber Crime Helpline: <strong>1930</strong></p>
+    </div>
+</section>
+{% endblock %}

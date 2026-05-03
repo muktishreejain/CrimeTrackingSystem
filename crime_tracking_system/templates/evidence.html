@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-header bg-navy text-white"><h5 class="mb-0">Evidence Management - Case {{ caseid }}</h5></div>
+        <div class="card-body">
+            <form method="post" class="row g-3">
+                <div class="col-md-6"><label class="form-label">Description</label><input name="Description" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Type</label><input name="Type" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Collection Date</label><input type="date" name="CollectionDate" class="form-control" required></div>
+                <div class="col-md-12"><label class="form-label">Storage Location</label><input name="StorageLocation" class="form-control" required></div>
+                <div class="col-12 text-end"><button class="btn btn-danger">Add Evidence</button></div>
+            </form>
+        </div>
+    </div>
+    <div class="card"><div class="card-body">
+        <h6>Evidence List</h6>
+        <ul class="mb-0">
+            {% for e in evidence_list %}
+                <li>#{{ e.EvidenceID }} - {{ e.Description }} ({{ e.Type }}) stored at {{ e.StorageLocation }} on {{ e.CollectionDate }}</li>
+            {% else %}
+                <li class="text-muted">No evidence records yet.</li>
+            {% endfor %}
+        </ul>
+    </div></div>
+</div>
+{% endblock %}

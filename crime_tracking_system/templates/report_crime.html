@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-navy text-white"><h5 class="mb-0">Citizen Crime Report Form</h5></div>
+        <div class="card-body">
+            <form method="post" action="{{ url_for('submit_crime') }}" class="row g-3">
+                <h6 class="border-bottom pb-2">Citizen Information</h6>
+                <div class="col-md-4"><label class="form-label">Name</label><input name="Name" class="form-control" required></div>
+                <div class="col-md-2"><label class="form-label">Gender</label><select name="Gender" class="form-select" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+                <div class="col-md-3"><label class="form-label">DOB</label><input type="date" name="DOB" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Contact No</label><input name="ContactNo" class="form-control" required></div>
+                <div class="col-md-4"><label class="form-label">ID Proof</label><input name="IDProof" class="form-control" required></div>
+                <div class="col-md-4"><label class="form-label">Street</label><input name="Street" class="form-control" required></div>
+                <div class="col-md-2"><label class="form-label">City</label><input name="City" class="form-control" required></div>
+                <div class="col-md-2"><label class="form-label">Zip</label><input name="Zip" class="form-control" required></div>
+
+                <h6 class="border-bottom pb-2 mt-2">Crime Information</h6>
+                <div class="col-md-3"><label class="form-label">Crime Type</label><input name="CrimeType" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Category</label><input name="Category" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Date & Time</label><input type="datetime-local" name="DateTime" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Severity</label><select name="Severity" class="form-select" required><option value="LOW">LOW</option><option value="MEDIUM">MEDIUM</option><option value="HIGH">HIGH</option></select></div>
+                <div class="col-md-12"><label class="form-label">Location</label><input name="Location" class="form-control" required></div>
+                <div class="col-md-12"><label class="form-label">Crime Detailed Narrative</label><textarea name="Description" class="form-control" rows="4" required></textarea></div>
+
+                <h6 class="border-bottom pb-2 mt-2">FIR Preliminary Information</h6>
+                <div class="col-md-3"><label class="form-label">FIR Date</label><input type="date" name="FIRDate" class="form-control" required></div>
+                <div class="col-md-4"><label class="form-label">Legal Sections</label><input name="LegalSections" class="form-control" required></div>
+                <div class="col-md-5"><label class="form-label">Remarks</label><input name="Remarks" class="form-control"></div>
+
+                <div class="col-12 text-end">
+                    <button class="btn btn-danger">Submit Crime Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

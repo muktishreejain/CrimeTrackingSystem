@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="surface-card mb-4">
+        <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center">
+            <div>
+                <h4 class="mb-1">Database Viewer</h4>
+                <p class="text-muted mb-0">Select any schema table and inspect complete rows.</p>
+            </div>
+            <form method="get" class="d-flex gap-2">
+                <select name="table" class="form-select" style="min-width: 260px;">
+                    {% for table in tables %}
+                        <option value="{{ table }}" {% if selected_table == table %}selected{% endif %}>{{ table }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary">Load Table</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="surface-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Table: {{ selected_table }}</h5>
+            <span class="badge text-bg-light">{{ rows|length }} records</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        {% for col in columns %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        {% for col in columns %}
+                            <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="{{ columns|length }}" class="text-center text-muted py-4">No records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

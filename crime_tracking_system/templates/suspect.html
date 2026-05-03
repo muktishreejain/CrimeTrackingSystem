@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-header bg-navy text-white"><h5 class="mb-0">Suspect Management - Case {{ caseid }}</h5></div>
+        <div class="card-body">
+            <form method="post" class="row g-3">
+                <div class="col-md-4"><label class="form-label">Name</label><input name="Name" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">DOB</label><input type="date" name="DOB" class="form-control" required></div>
+                <div class="col-md-5"><label class="form-label">ID Details</label><input name="IDDetails" class="form-control" required></div>
+                <div class="col-md-8"><label class="form-label">Criminal History</label><input name="CriminalHistory" class="form-control"></div>
+                <div class="col-md-4"><label class="form-label">Remarks</label><input name="Remarks" class="form-control"></div>
+                <div class="col-12 text-end"><button class="btn btn-danger">Add Suspect</button></div>
+            </form>
+        </div>
+    </div>
+    <div class="card"><div class="card-body">
+        <h6>Linked Suspects</h6>
+        <ul class="mb-0">
+            {% for s in suspects %}
+                <li>#{{ s.SuspectID }} - {{ s.Name }} | History: {{ s.CriminalHistory }} | Remarks: {{ s.Remarks }}</li>
+            {% else %}
+                <li class="text-muted">No suspects linked yet.</li>
+            {% endfor %}
+        </ul>
+    </div></div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-header bg-navy text-white"><h5 class="mb-0">Investigation Updates - Case {{ caseid }}</h5></div>
+        <div class="card-body">
+            <form method="post" class="row g-3">
+                <div class="col-md-4"><label class="form-label">Investigation Status</label><input name="InvestigationStatus" class="form-control" required></div>
+                <div class="col-md-8"><label class="form-label">Notes</label><input name="Notes" class="form-control" required></div>
+                <div class="col-12 text-end"><button class="btn btn-danger">Add Log</button></div>
+            </form>
+        </div>
+    </div>
+    <div class="card"><div class="card-body">
+        <h6>Timeline</h6>
+        {% if timeline %}
+        <ul class="mb-0">
+            {% for log in timeline %}
+                <li>#{{ log.InvestigationID }} - <strong>{{ log.InvestigationStatus }}</strong>: {{ log.Notes }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-muted mb-0">No timeline entries yet.</p>
+        {% endif %}
+    </div></div>
+</div>
+{% endblock %}
